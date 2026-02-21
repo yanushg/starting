@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Chapter</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at 20% 20%, #1a1f2e, #0f1115 60%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+}
+
+h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.amazon {
+    color: #ff9900;
+    font-weight: 700;
+}
+
+.date {
+    font-size: 20px;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.countdown {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.tagline {
+    margin-top: 25px;
+    font-size: 15px;
+    opacity: 0.6;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Starting at <span class="amazon">Amazon</span></h1>
+    <div class="date">February 23, 2026</div>
+    <div class="countdown" id="timer"></div>
+    <div class="tagline">Built for scale. Ready for impact.</div>
+</div>
+
+<script>
+const target = new Date("Feb 23, 2026 09:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    if (diff <= 0) {
+        document.getElementById("timer").innerHTML = "Day One 🚀";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("timer").innerHTML =
+        days + " : " + hours + " : " + minutes + " : " + seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>
